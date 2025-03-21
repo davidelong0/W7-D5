@@ -17,6 +17,10 @@ const loadProducts = async () => {
     if (response.ok) {
       const products = await response.json();
       products.forEach((product) => {
+        // Controlla se la proprietà quantity esiste e ha un valore valido
+        const availableQuantity =
+          product.quantity !== undefined ? product.quantity : 0;
+
         container.innerHTML += `
           <div class="col-md-4 mb-4">
             <div class="card product-card">
@@ -29,9 +33,7 @@ const loadProducts = async () => {
                 <p class="card-text"><strong>€${product.price.toFixed(
                   2
                 )}</strong></p>
-                <p class="card-text">Disponibili: ${
-                  product.quantity > 0 ? 1 : 0
-                }</p>
+                <p class="card-text">Disponibili: ${availableQuantity}</p>
                 <p class="card-text"><strong>ID Prodotto: ${
                   product._id
                 }</strong></p>
@@ -42,7 +44,7 @@ const loadProducts = async () => {
                   product._id
                 }', '${product.name}', '${product.price}', '${
           product.imageUrl
-        }', ${product.quantity > 0 ? 1 : 0})">Aggiungi al Carrello</button>
+        }', ${availableQuantity})">Aggiungi al Carrello</button>
               </div>
             </div>
           </div>
@@ -87,18 +89,21 @@ document.getElementById("login-form").addEventListener("submit", (e) => {
 // Carica i prodotti quando la pagina è pronta
 window.onload = loadProducts;
 
-// Funzione per aggiungere il prodotto al carrello (aggiungi solo 1 prodotto alla volta)
+// Funzione per aggiungere il prodotto al carrello
 function addToCart(id, name, price, imageUrl, availableQuantity) {
+  if (availableQuantity === 0) {
+    alert("Questo prodotto non è disponibile.");
+    return;
+  }
+
   let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
   // Aggiungi solo 1 prodotto per volta
   const productIndex = cart.findIndex((item) => item.id === id);
 
   if (productIndex === -1) {
-    // Prodotto non ancora presente nel carrello, lo aggiungiamo con quantità 1
     cart.push({ id, name, price, imageUrl, quantity: 1 });
   } else {
-    // Se il prodotto è già presente, la quantità non deve superare 1
     cart[productIndex].quantity = 1;
   }
 

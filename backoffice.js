@@ -10,6 +10,27 @@ const addProduct = async () => {
   const brand = document.getElementById("brand").value;
   const imageUrl = document.getElementById("imageUrl").value;
 
+  // Controlla che tutti i campi siano validi
+  if (
+    !name ||
+    !description ||
+    isNaN(price) ||
+    isNaN(quantity) ||
+    !brand ||
+    !imageUrl
+  ) {
+    alert("Tutti i campi devono essere compilati correttamente.");
+    return;
+  }
+
+  // Verifica che price e quantity siano numeri validi
+  if (price <= 0 || quantity < 0) {
+    alert(
+      "Il prezzo e la quantità devono essere numeri validi (prezzo > 0 e quantità >= 0)."
+    );
+    return;
+  }
+
   const productData = {
     name,
     description,
@@ -42,7 +63,11 @@ const addProduct = async () => {
     } else {
       const errorData = await response.json();
       console.error("Errore nel caricamento del prodotto:", errorData);
-      alert("Errore nell'aggiunta del prodotto!");
+      alert(
+        `Errore nell'aggiunta del prodotto: ${
+          errorData.message || "Errore sconosciuto"
+        }`
+      );
     }
   } catch (error) {
     console.error("Errore nel processo:", error);
@@ -72,7 +97,7 @@ const removeProduct = async () => {
 
     if (response.ok) {
       alert("Prodotto rimosso!");
-      window.location.href = "index.html"; // Ricarica la homepage dopo la rimozione
+      window.location.href = "index.html";
     } else {
       alert("Errore nella rimozione del prodotto.");
     }
@@ -102,7 +127,7 @@ const removeAllProducts = async () => {
 
     if (response.ok) {
       alert("Tutti i prodotti sono stati rimossi!");
-      window.location.href = "index.html"; // Ricarica la homepage dopo la rimozione
+      window.location.href = "index.html";
     } else {
       alert("Errore nella rimozione dei prodotti.");
     }
@@ -112,7 +137,6 @@ const removeAllProducts = async () => {
   }
 };
 
-// Ascolta il submit del form per aggiungere un prodotto
 document.getElementById("add-product-form").addEventListener("submit", (e) => {
   e.preventDefault();
   addProduct();
