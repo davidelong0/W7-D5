@@ -8,6 +8,55 @@
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
     />
+    <style>
+      body {
+        background: linear-gradient(135deg, #9c27b0, #6a1b9a);
+        color: #f5c300;
+        font-family: "Arial", sans-serif;
+      }
+
+      h1,
+      h2 {
+        color: #f5c300;
+        text-shadow: 3px 3px 7px rgba(0, 0, 0, 0.4);
+      }
+      .card {
+        background: #fff;
+        border-radius: 12px;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        margin: 20px;
+      }
+
+      /* Effetto hover più fluido per le carte */
+      .card:hover {
+        transform: translateY(-12px);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+      }
+
+      .card-body {
+        background-color: #2d2d2d; /* Colore scuro dietro al testo */
+        color: #9c27b0; /* Testo viola */
+        padding: 20px;
+        border-radius: 10px;
+      }
+
+      .card-title {
+        font-size: 1.5rem;
+        font-weight: bold;
+      }
+
+      /* Responsive per schermi più piccoli */
+      @media (max-width: 768px) {
+        #login-form {
+          max-width: 90%;
+        }
+
+        .card {
+          margin: 15px 0;
+        }
+      }
+    </style>
   </head>
   <body>
     <div class="container">
@@ -17,7 +66,7 @@
       </div>
       <div class="text-center mt-4">
         <!-- Bottone per tornare alla homepage -->
-        <button class="btn btn-secondary" onclick="goHome()">
+        <button class="btn btn-secondary mb-4" onclick="goHome()">
           Torna alla Home
         </button>
       </div>
