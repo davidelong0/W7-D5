@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Backoffice - Aggiungi/Rimuovi Prodotto</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="my-4 text-center">Backoffice</h1>
+
+      <h2>Aggiungi un nuovo prodotto</h2>
+      <form id="add-product-form">
+        <div class="form-group">
+          <label for="name">Nome prodotto</label>
+          <input
+            type="text"
+            id="name"
+            class="form-control"
+            placeholder="Nome prodotto"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="description">Descrizione</label>
+          <input
+            type="text"
+            id="description"
+            class="form-control"
+            placeholder="Descrizione"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="price">Prezzo</label>
+          <input
+            type="number"
+            id="price"
+            class="form-control"
+            placeholder="Prezzo"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="quantity">Quantità</label>
+          <input
+            type="number"
+            id="quantity"
+            class="form-control"
+            placeholder="Quantità"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="brand">Marca</label>
+          <input
+            type="text"
+            id="brand"
+            class="form-control"
+            placeholder="Marca"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="imageUrl">URL immagine</label>
+          <input
+            type="text"
+            id="imageUrl"
+            class="form-control"
+            placeholder="URL immagine"
+            required
+          />
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block">
+          Aggiungi prodotto
+        </button>
+      </form>
+
+      <h2 class="my-4">Rimuovi prodotto</h2>
+      <div class="form-group">
+        <input
+          type="text"
+          id="product-id"
+          class="form-control"
+          placeholder="ID prodotto"
+          required
+        />
+      </div>
+      <button onclick="removeProduct()" class="btn btn-danger btn-block">
+        Rimuovi prodotto
+      </button>
+
+      <h2 class="my-4">Rimuovi tutti i prodotti</h2>
+      <button onclick="removeAllProducts()" class="btn btn-warning btn-block">
+        Rimuovi tutti i prodotti
+      </button>
+    </div>
+
+    <script src="backoffice.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  </body>
+</html>
